@@ -10,7 +10,7 @@
 
         <div class="form-group col-md-6">
           <label>Categoria</label>
-          <select class="form-control" formControlName="category">
+          <select class="form-control" formControlName="categoryId">
             <option value="" selected>Selecione</option>
             <option *ngFor="let category of categories" [value]="category.id">{{ category.name + " - " + category.companyName}}</option>
           </select>
@@ -21,7 +21,7 @@
 
         <div class="form-group col-md-6">
           <label>Fornecedor</label>
-          <select class="form-control" formControlName="supplier">
+          <select class="form-control" formControlName="supplierId">
             <option value="" selected>Selecione</option>
             <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
           </select>

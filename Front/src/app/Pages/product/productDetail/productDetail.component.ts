@@ -83,8 +83,8 @@ export class ProductDetailComponent implements OnInit {
   createProductForm() {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      category: ['' , Validators.required],
-      supplier: ['', Validators.required],
+      categoryId: ['' , Validators.required],
+      supplierId: ['', Validators.required],
       inOrder: ['', Validators.required],
       inStock: ['', Validators.required],
       price: ['', Validators.required]
@@ -126,7 +126,7 @@ export class ProductDetailComponent implements OnInit {
   populateForms() {
     this.form.patchValue({
       name: this.product.name,
-      category: this.product.categoryId,
+      categoryId: this.product.categoryId,
       supplier: this.product.supplierId,
       inStock: this.product.inStock,
       inOrder: this.product.inOrder,
@@ -138,9 +138,10 @@ export class ProductDetailComponent implements OnInit {
     this.spinner.show();
     if (this.form.valid) {
       const productData= this.form.value;
+      console.log(productData);
       if (this.productSave == 'post') {
         const product = { ...productData };
-
+        console.log(product);
         this.productService.post(product).subscribe({
           next: (result: any) => {
             this.toastr.success('Produto salvo com sucesso', "Sucesso");
@@ -152,7 +153,7 @@ export class ProductDetailComponent implements OnInit {
         }).add(() => this.spinner.hide())
       } else {
         const product = { id: this.product.id, ...productData};
-
+        console.log(product);
         this.productService.put(product).subscribe({
           next: () => {
             this.toastr.success('Produto salvo com sucesso', "Sucesso");

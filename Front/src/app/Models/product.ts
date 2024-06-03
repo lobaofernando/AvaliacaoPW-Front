@@ -8,6 +8,7 @@ export interface Product {
   inStock: number;
   inOrder: number;
   supplierId?: number;
+  supplier?: Supplier;
   categoryId?: number;
   category?: Category;
 }
