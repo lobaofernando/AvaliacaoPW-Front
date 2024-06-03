@@ -33,7 +33,7 @@
         <td >{{product.name}}</td>
         <td>{{product.category?.name + " - " + product.category?.companyName}}</td>
         <td>{{ product.inStock }}</td>
-        <td>R${{ product.inOrder}}</td>
+        <td>{{ product.inOrder}}</td>
         <td>R${{ product.price}}</td>
         <td>
           <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, product.id)">

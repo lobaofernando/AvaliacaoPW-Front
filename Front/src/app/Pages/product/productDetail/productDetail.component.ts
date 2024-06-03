@@ -127,7 +127,7 @@ export class ProductDetailComponent implements OnInit {
     this.form.patchValue({
       name: this.product.name,
       categoryId: this.product.categoryId,
-      supplier: this.product.supplierId,
+      supplierId: this.product.supplierId,
       inStock: this.product.inStock,
       inOrder: this.product.inOrder,
       price: this.product.price,
