@@ -7,7 +7,7 @@
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary" routerLink="/transportes/detalhe">
+      <a class="d-flex btn btn-outline-primary" routerLink="/produtos/detalhe">
         <i class="fa fa-plus-circle my-1"></i>
         <b class="ml-1 d-none d-sm-block">
           Novo
@@ -20,32 +20,32 @@
   <table class="table tabel-striped table-hover">
     <thead class="table-dark">
       <tr class="text-center">
-        <th>Dados do veiculo</th>
-        <th>Passageiro</th>
-        <th>Data do transporte</th>
-        <th>Kilometragem</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Qtd Estoque</th>
+        <th>Qtd pedido</th>
         <th>Preço</th>
         <th>Opções</th>
       </tr>
     </thead>
-    <tbody *ngFor="let transport of transports">
+    <tbody *ngFor="let product of products">
       <tr class="border text-center">
-        <td >Placa: {{transport.vehiclePlate}} <br> Marca: {{transport.vehicle?.name}} <br> Modelo: {{transport.vehicle?.companyName}}</td>
-        <td>{{ transport.passenger?.name }}</td>
-        <td>{{transport.dateHourTransport | DateHourFormat }}</td>
-        <td>{{ transport.transportKm }}</td>
-        <td>R${{ transport.transportKm * 0.4 }}</td>
+        <td >{{product.name}}</td>
+        <td>{{product.category?.name + " - " + product.category?.companyName}}</td>
+        <td>{{ product.inStock }}</td>
+        <td>R${{ product.inOrder}}</td>
+        <td>R${{ product.price}}</td>
         <td>
-          <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, transport.id)">
+          <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, product.id)">
             <i class="fa fa-trash"></i>
           </button>
-          <button type="button" class="btn btn-primary btn-lg me-2" tooltip="Editar" (click)="detail(transport.id)">
+          <button type="button" class="btn btn-primary btn-lg me-2" tooltip="Editar" (click)="detail(product.id)">
             <i class="fas fa-edit"></i>
           </button>
         </td>
       </tr>
     </tbody>
-    <tfoot *ngIf="!transports.length">
+    <tfoot *ngIf="!products.length">
       <tr>
         <td colspan="8" class="text-center">
           <h4>Nenhum fornecedor cadastrado</h4>
@@ -71,7 +71,7 @@
 
   <ng-template #template>
     <div class="modal-body text-center">
-      <p>Tem certeza que quer deletar esse veiculo?</p>
+      <p>Tem certeza que quer deletar esse produto?</p>
       <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
       <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
     </div>

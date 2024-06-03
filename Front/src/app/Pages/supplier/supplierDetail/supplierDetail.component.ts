@@ -107,8 +107,10 @@ export class SupplierDetailComponent implements OnInit {
       const supplierData = this.supplierForm.value;
       const addressData = this.addressForm.value;
 
+      
       if (this.supplierSave == 'post') {
         const supplier = { ...supplierData, address: addressData };
+        console.log(this.supplier);
 
         this.supplierService.post(supplier).subscribe({
           next: (result: any) => {
@@ -121,7 +123,7 @@ export class SupplierDetailComponent implements OnInit {
         }).add(() => this.spinner.hide())
       } else {
         const supplier = { id: this.supplier.id, ...supplierData, address: addressData };
-
+        console.log(this.supplier);
         this.supplierService.put(supplier).subscribe({
           next: () => {
             this.toastr.success('Fornecedor salvo com sucesso', "Sucesso");

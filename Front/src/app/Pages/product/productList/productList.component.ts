@@ -4,37 +4,39 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/Models/Pagination';
-import { Transport } from 'src/app/Models/transport';
-import { TransportService } from 'src/app/Service/transport.service';
+import { Category } from 'src/app/Models/category';
+import { Product } from 'src/app/Models/product';
+import { ProductService } from 'src/app/Service/product.service';
 
 @Component({
-  selector: 'app-transportList',
-  templateUrl: './transportList.component.html'
+  selector: 'app-productList',
+  templateUrl: './productList.component.html'
 })
-export class TransportListComponent implements OnInit {
-  public transports: Transport[] = [];
+export class ProductListComponent implements OnInit {
+  public products: Product[] = [];
   modalRef?: BsModalRef;
-  transportId: number = 0;
+  productId: number = 0;
   public pagination: Pagination = new Pagination();
+  public categories: Category[] = [];
 
   constructor(
     private toastr: ToastrService,
     private router: Router,
     private modalService: BsModalService,
     private spinner: NgxSpinnerService,
-    private transportSerivce: TransportService
+    private productSerivce: ProductService
   ) { }
 
   ngOnInit() {
-    this.getTransports();
+    this.getProducts();
   }
 
-  public getTransports() {
+  public getProducts() {
     this.spinner.show();
-    this.transportSerivce.getTransports(this.pagination.currentPage, this.pagination.itemsPerPages)
+    this.productSerivce.getProducts(this.pagination.currentPage, this.pagination.itemsPerPages)
       .subscribe({
         next: (result: any) => {
-          this.transports = result.result;
+          this.products = result.result;
           this.pagination = result.pagination;
         },
         error: (error: any) => {
@@ -43,9 +45,9 @@ export class TransportListComponent implements OnInit {
       }).add(() => this.spinner.hide());
   }
 
-  openModal(event: any, template: TemplateRef<any>, transportId: number): void {
+  openModal(event: any, template: TemplateRef<any>, productId: number): void {
     event.stopPropagation();
-    this.transportId = transportId;
+    this.productId = productId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
@@ -56,10 +58,10 @@ export class TransportListComponent implements OnInit {
   confirm() {
     this.spinner.show();
     this.modalRef?.hide();
-    this.transportSerivce.delete(this.transportId).subscribe({
+    this.productSerivce.delete(this.productId).subscribe({
       next: (result: any) => {
         this.toastr.success("Excluido com sucesso!", "Deletado");
-        this.getTransports();
+        this.getProducts();
       },
       error: (error: any) => {
         this.toastr.error(error.error.message, 'Erro');
@@ -68,12 +70,12 @@ export class TransportListComponent implements OnInit {
   }
 
   public detail(id: number): void {
-    this.router.navigate([`/transportes/detalhe/${id}`]);
+    this.router.navigate([`/produtos/detalhe/${id}`]);
   }
 
   public pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    this.getTransports()
+    this.getProducts()
   }
 
 }

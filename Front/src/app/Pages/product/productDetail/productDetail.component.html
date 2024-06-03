@@ -1,0 +1,64 @@
+<div class="card rounded shadow-sm">
+  <form [formGroup]="form">
+    <div class="p-3">
+      <div class="row">
+
+        <div class="form-group col-md-6">
+          <label>Nome</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Categoria</label>
+          <select class="form-control" formControlName="category">
+            <option value="" selected>Selecione</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name + " - " + category.companyName}}</option>
+          </select>
+          <div class="invalid-feedback">
+            A categoria é obrigatória.
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Fornecedor</label>
+          <select class="form-control" formControlName="supplier">
+            <option value="" selected>Selecione</option>
+            <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
+          </select>
+          <div class="invalid-feedback">
+            O fornecedor é obrigatório.
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Quantidade em estoque</label>
+          <input type="text" class="form-control" formControlName="inStock" placeholder="Quantidade no estoque">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Quantidade em pedido</label>
+          <input type="text" class="form-control" formControlName="inOrder" placeholder="Quantidade de itens pedidos">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Preço</label>
+          <input type="text" class="form-control" formControlName="price" placeholder="Preço do produto">
+      </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="card rounded shadow-sm mt-4">
+  <div class="card-footer">
+    <div class="d-flex">
+      <button class="btn btn-outline-secondary me-auto border" routerLink="/produtos/lista">
+        Cancelar Alteração
+      </button>
+      <button class="btn btn-success" [disabled]="!form.valid" (click)="save()">
+        Salvar
+      </button>
+    </div>
+  </div>
+</div>

@@ -17,9 +17,9 @@ import { EmployeeListComponent } from './Pages/employee/employeeList/employeeLis
 import { SupplierComponent } from './Pages/supplier/supplier.component';
 import { SupplierDetailComponent } from './Pages/supplier/supplierDetail/supplierDetail.component';
 import { SupplierListComponent } from './Pages/supplier/supplierList/supplierList.component';
-import { TransportComponent } from './Pages/transport/transport.component';
-import { TransportDetailComponent } from './Pages/transport/transportDetail/transportDetail.component';
-import { TransportListComponent } from './Pages/transport/transportList/transportList.component';
+import { ProductComponent } from './Pages/product/product.component';
+import { ProductDetailComponent } from './Pages/product/productDetail/productDetail.component';
+import { ProductListComponent } from './Pages/product/productList/productList.component';
 import { ReportsComponent } from './Pages/reports/reports.component';
 
 const routes: Routes = [
@@ -57,12 +57,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'transportes',
-        component: TransportComponent,
+        path: 'produtos',
+        component: ProductComponent,
         children: [
-          { path: 'detalhe', component: TransportDetailComponent },
-          { path: 'detalhe/:id', component: TransportDetailComponent },
-          { path: 'lista', component: TransportListComponent },
+          { path: 'detalhe', component: ProductDetailComponent },
+          { path: 'detalhe/:id', component: ProductDetailComponent },
+          { path: 'lista', component: ProductListComponent },
         ]
       },
       {

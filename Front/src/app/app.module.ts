@@ -38,10 +38,10 @@ import { EmployeeListComponent } from './Pages/employee/employeeList/employeeLis
 import { SupplierComponent } from './Pages/supplier/supplier.component';
 import { SupplierDetailComponent } from './Pages/supplier/supplierDetail/supplierDetail.component';
 import { SupplierListComponent } from './Pages/supplier/supplierList/supplierList.component';
-import { TransportService } from './Service/transport.service';
-import { TransportComponent } from './Pages/transport/transport.component';
-import { TransportDetailComponent } from './Pages/transport/transportDetail/transportDetail.component';
-import { TransportListComponent } from './Pages/transport/transportList/transportList.component';
+import { ProductService } from './Service/product.service';
+import { ProductComponent } from './Pages/product/product.component';
+import { ProductDetailComponent } from './Pages/product/productDetail/productDetail.component';
+import { ProductListComponent } from './Pages/product/productList/productList.component';
 import { DateHourFormat } from './Helpers/DateHourFormat.pipe';
 import { ReportsComponent } from './Pages/reports/reports.component';
 import { ReportService } from './Service/report.service';
@@ -68,9 +68,9 @@ import { ReportService } from './Service/report.service';
     SupplierComponent,
     SupplierDetailComponent,
     SupplierListComponent,
-    TransportComponent,
-    TransportDetailComponent,
-    TransportListComponent,
+    ProductComponent,
+    ProductDetailComponent,
+    ProductListComponent,
     ReportsComponent
 
   ],
@@ -99,7 +99,7 @@ import { ReportService } from './Service/report.service';
     CategoryService,
     EmployeeService,
     SupplierService,
-    TransportService,
+    ProductService,
     ReportService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
